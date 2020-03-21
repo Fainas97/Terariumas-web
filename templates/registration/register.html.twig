@@ -3,14 +3,26 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <form method="post">
+        {% for error in errors %}
+            <div class="alert alert-danger">{{ error.message }}</div>
+        {% endfor %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.Name) }}
-        {{ form_row(registrationForm.Email) }}
-        {{ form_row(registrationForm.Password) }}
-        {{ form_row(registrationForm.Admin) }}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+        <label for="inputEmail">Name</label>
+        <input type="text" value="{{ last_name }}" name="name" id="inputName" class="form-control" required autofocus>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_email }}" name="email" id="inputEmail" class="form-control" required autofocus>
+        <label for="inputPassword">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" required>
 
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <label for="inputAdmin">Admin</label>
+        <input type="hidden" name="admin" value="0"><input type="checkbox" class="form-control" onclick="this.previousSibling.value=1-this.previousSibling.value">
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            Sign in
+        </button>
+    </form>
 {% endblock %}
