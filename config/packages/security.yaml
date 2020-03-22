@@ -3,6 +3,11 @@ security:
     encoders:
         FOS\UserBundle\Model\UserInterface: auto
         App\Entity\User: auto
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     providers:
         users_in_memory: { memory: null }
         users:

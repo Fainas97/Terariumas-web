@@ -3,26 +3,53 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% for error in errors %}
-            <div class="alert alert-danger">{{ error.message }}</div>
-        {% endfor %}
-
-        <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
-        <label for="inputEmail">Name</label>
-        <input type="text" value="{{ last_name }}" name="name" id="inputName" class="form-control" required autofocus>
-        <label for="inputEmail">Email</label>
-        <input type="email" value="{{ last_email }}" name="email" id="inputEmail" class="form-control" required autofocus>
-        <label for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" required>
-
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-        <label for="inputAdmin">Admin</label>
-        <input type="hidden" name="admin" value="0"><input type="checkbox" class="form-control" onclick="this.previousSibling.value=1-this.previousSibling.value">
-
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+    <h1>Register</h1>
+    {{ form_start(registrationForm) }}
+    <div class="row">
+        <div class="col-md-3 col-xs-3">
+            <div class="label">
+                {{ form_label(registrationForm.Name) }}
+            </div>
+            {{ form_widget(registrationForm.Name, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(registrationForm.Name) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-xs-3">
+            <div class="label">
+                {{ form_label(registrationForm.Email) }}
+            </div>
+            {{ form_widget(registrationForm.Email, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(registrationForm.Email) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-xs-3">
+            <div class="label">
+                {{ form_label(registrationForm.Password) }}
+            </div>
+            {{ form_widget(registrationForm.Password, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(registrationForm.Password) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-xs-3">
+            <div class="label">
+                {{ form_label(registrationForm.Admin) }}
+            </div>
+            {{ form_widget(registrationForm.Admin, { attr: { 'class': 'form-control' }}) }}
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-6 col-xs-6">
+        <button class="btn grey">Register</button>
+    </div>
+    </div>
+    {{ form_end(registrationForm) }}
 {% endblock %}
