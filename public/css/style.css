@@ -1,10 +1,10 @@
+body {
+    font-size: .875rem;
+}
+
 .label {
     margin-top: 10px;
     font-weight: lighter;
-}
-
-body {
-    font-size: .875rem;
 }
 
 .feather {
@@ -17,9 +17,21 @@ body {
     margin: 15px;
 }
 
+.form-margin-bottom {
+    margin-bottom: 30px;
+}
+
 .grey {
     background-color: #5d5f61;
     color: white;
+}
+
+.float-right {
+    float: right;
+}
+
+.white-grey {
+    background-color: #d1d3d5;
 }
 
 /*

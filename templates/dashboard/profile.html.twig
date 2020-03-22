@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            {% include 'modal/success-modal.html.twig' with {'message':message} %}
+        {% endfor %}
+    {% endfor %}
+    <h2>Profile</h2>
+    <hr>
+    {{ form_start(profileEditForm) }}
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <h5>{{ form_label(profileEditForm.Name) }}</h5>
+                {{ form_widget(profileEditForm.Name, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(profileEditForm.Name) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <h5>{{ form_label(profileEditForm.Email) }}</h5>
+                {{ form_widget(profileEditForm.Email, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(profileEditForm.Email) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <h5>{{ form_label(profileEditForm.password.first) }}</h5>
+                {{ form_widget(profileEditForm.password.first, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(profileEditForm.password.first) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <h5>{{ form_label(profileEditForm.password.second) }}</h5>
+                {{ form_widget(profileEditForm.password.second, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(profileEditForm.password.second) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-xs-12">
+        <div class="form-group">
+            <br>
+            <button class="btn btn-lg grey" type="submit">Save</button>
+            <button class="btn btn-lg white-grey" type="reset">Reset</button>
+        </div>
+    </div>
+    {{ form_end(profileEditForm) }}
+    <h2>Change password</h2>
+    <hr>
+    {{ form_start(profileForm) }}
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <h5>{{ form_label(profileForm.password.first) }}</h5>
+                {{ form_widget(profileForm.password.first, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(profileForm.password.first) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <h5>{{ form_label(profileForm.password.second) }}</h5>
+                {{ form_widget(profileForm.password.second, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(profileForm.password.second) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <h5>{{ form_label(profileForm.newPassword.first) }}</h5>
+                {{ form_widget(profileForm.newPassword.first, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(profileForm.newPassword.first) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+            <div class="form-group">
+                <h5>{{ form_label(profileForm.newPassword.second) }}</h5>
+                {{ form_widget(profileForm.newPassword.second, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(profileForm.newPassword.second) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-xs-12">
+        <div class="form-group">
+            <br>
+            <button class="btn btn-lg grey" type="submit">Save</button>
+        </div>
+    </div>
+    {{ form_end(profileForm) }}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        feather.replace();
+        $('#modalSuccess').modal('show');
+    </script>
+{% endblock %}
