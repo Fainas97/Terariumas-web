@@ -127,7 +127,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
         return array($this->admin);
     }
@@ -138,7 +138,7 @@ class User implements UserInterface
     }
 
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->name;
     }

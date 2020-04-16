@@ -48,20 +48,26 @@ $(document).ready(function() {
         });
     });
 
+    // Delete users
     $('#confirm-delete').on('click', '.btn-ok', function(e) {
         let $modalDiv = $(e.delegateTarget);
         $modalDiv.addClass('loading');
         let id = $(this).data('recordId');
+        $modalDiv.modal('hide').removeClass('loading');
         $.ajax({
             url: '/user/delete/' + id,
             type: 'post',
-            success: function () {
-                let modal = $('#modalSuccess');
-                modal.find('#successBody').text('hello');
+            success: function (result) {
+                reloadTableData();
+                $.notify({
+                    title: '<b>Operation successful!</b>',
+                    message: result.success
+                },{
+                    delay: 10000
+                });
+
             },
         });
-        $modalDiv.modal('hide').removeClass('loading');
-        $('#modalSuccess').modal('show');
 
     });
 
@@ -70,8 +76,42 @@ $(document).ready(function() {
         $('.title', this).text(data.recordTitle);
         $('.btn-ok', this).data('recordId', data.recordId);
     });
+
+    if ($('#alert').is(':visible')) {
+        setTimeout(function(){
+            $('#alert').fadeOut(1000);
+        }, 10000);
+    }
+
+    // Notify settings
+    $.notifyDefaults({
+        type: "success",
+        placement: {
+            from: "bottom"
+        },
+        offset: {
+            x: 80,
+            y: 40
+        },
+        delay: 5000,
+        animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+        },
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+            '<span data-notify="title">{1}</span> ' +
+            '<span data-notify="message">{2}</span>' +
+            '<div class="progress" data-notify="progressbar">' +
+            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+            '</div>' +
+            '</div>'
+    });
 });
 
-function deleteRow(r) {
-
+function reloadTableData() {
+    let usersTable = $('#users-table');
+    usersTable.html('<div class="loader"></div>');
+    let url = Routing.generate('users_table');
+    usersTable.load(url);
 }

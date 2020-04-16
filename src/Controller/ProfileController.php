@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Exception;
 use App\Service\UserService;
 use App\Form\ProfileEditFormType;
@@ -60,7 +61,7 @@ class ProfileController extends AbstractController
         }
 
         // do anything else you need here, like send an email
-        return $this->render('dashboard/profile.html.twig', [
+        return $this->render('profile/profile.html.twig', [
             'profileForm' => $formPass->createView(),
             'profileEditForm' => $formEdit->createView(),
             'user' => $user
@@ -72,7 +73,7 @@ class ProfileController extends AbstractController
      * @param $plainPassword
      * @throws Exception
      */
-    private function updatePassword($user, $plainPassword)
+    private function updatePassword(User $user, string $plainPassword): void
     {
         $user->setPassword($this->passwordEncoder->encodePassword($user, $plainPassword));
         $user->setUpdateDate(new \DateTime('now'));
@@ -85,7 +86,7 @@ class ProfileController extends AbstractController
      * @param $user
      * @throws Exception
      */
-    private function updateProfile($user)
+    private function updateProfile(User $user): void
     {
         $user->setUpdateDate(new \DateTime('now'));
         $entityManager = $this->getDoctrine()->getManager();
