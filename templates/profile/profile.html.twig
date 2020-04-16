@@ -3,12 +3,14 @@
 {% block title %}Profile{% endblock %}
 
 {% block body %}
+    <h2>Profile</h2>
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            {% include 'modal/success-modal.html.twig' with {'message':message} %}
+            <div id="alert" class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
         {% endfor %}
     {% endfor %}
-    <h2>Profile</h2>
     <hr>
     {{ form_start(profileEditForm) }}
     <div class="row">
@@ -109,10 +111,4 @@
         </div>
     </div>
     {{ form_end(profileForm) }}
-{% endblock %}
-{% block javascripts %}
-    <script>
-        feather.replace();
-        $('#modalSuccess').modal('show');
-    </script>
 {% endblock %}

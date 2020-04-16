@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <h2>Users management page</h2>
+        </div>
+        <div class="col-md-6 col-sm-6">
+            <a class="btn grey float-right" href="{{ path('app_register') }}">Create new user</a>
+        </div>
+    </div>
+    {% include 'modal/confirm.html.twig' %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div id="alert" class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <div class="table-responsive">
+        {% include 'table/customer-table.html.twig' %}
+    </div>
+{% endblock %}
