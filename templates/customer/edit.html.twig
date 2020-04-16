@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <h2>Edit User</h2>
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div id="alert" class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <hr>
+    {{ form_start(userForm) }}
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="form-group">
+                <h5>{{ form_label(userForm.Name) }}</h5>
+                {{ form_widget(userForm.Name, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(userForm.Name) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="form-group">
+                <h5>{{ form_label(userForm.Email) }}</h5>
+                {{ form_widget(userForm.Email, { attr: { 'class': 'form-control' }}) }}
+                <div class="alert-danger">
+                    {{ form_errors(userForm.Email) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="label">
+                Role
+            </div>
+            {{ form_widget(userForm.Admin, { attr: { 'class': 'form-control' }}) }}
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="form-group">
+                <br>
+                <button class="btn btn-lg grey" type="submit">Save</button>
+                <button class="btn btn-lg white-grey" type="reset">Reset</button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(userForm) }}
+{% endblock %}

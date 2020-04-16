@@ -23,6 +23,7 @@ class Kernel extends BaseKernel
                 yield new $class();
             }
         }
+        date_default_timezone_set("Europe/Vilnius");
     }
 
     public function getProjectDir(): string

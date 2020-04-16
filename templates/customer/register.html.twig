@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Add Form</h1>
+    {{ form_start(registrationForm) }}
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(registrationForm.Name) }}
+            </div>
+            {{ form_widget(registrationForm.Name, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(registrationForm.Name) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(registrationForm.Email) }}
+            </div>
+            {{ form_widget(registrationForm.Email, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(registrationForm.Email) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(registrationForm.Password) }}
+            </div>
+            {{ form_widget(registrationForm.Password, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(registrationForm.Password) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="label">
+                Role
+            </div>
+            {{ form_widget(registrationForm.Admin, { attr: { 'class': 'form-control' }}) }}
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-6 col-xs-6">
+        <button class="btn grey">Register</button>
+    </div>
+    </div>
+    {{ form_end(registrationForm) }}
+{% endblock %}

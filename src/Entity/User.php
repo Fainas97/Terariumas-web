@@ -6,7 +6,6 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -22,40 +21,16 @@ class User implements UserInterface
     private ?int $id = null;
 
     /**
-     * @Assert\Length(
-     *      min = 5,
-     *      max = 70,
-     *      minMessage = "Your name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your name cannot be longer than {{ limit }} characters",
-     *      allowEmptyString = false
-     * )
      * @ORM\Column(type="string", length=70)
      */
     private string $name = '';
 
     /**
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email."
-     * )
-     * @Assert\Length(
-     *     min = 5,
-     *     max = 100,
-     *     minMessage = "Your email must be at least {{ limit }} characters long",
-     *     maxMessage = "Your email cannot be longer than {{ limit }} characters",
-     *     allowEmptyString = false
-     * )
      * @ORM\Column(type="string", length=100)
      */
     private string $email = '';
 
     /**
-     * @Assert\Length(
-     *     min = 6,
-     *     max = 255,
-     *     minMessage = "Your password must be at least {{ limit }} characters long",
-     *     maxMessage = "Your password cannot be longer than {{ limit }} characters",
-     *     allowEmptyString = false
-     * )
      * @ORM\Column(type="string", length=255)
      */
     private string $password = '';
@@ -152,7 +127,7 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
         return array($this->admin);
     }
@@ -163,7 +138,7 @@ class User implements UserInterface
     }
 
 
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->name;
     }
