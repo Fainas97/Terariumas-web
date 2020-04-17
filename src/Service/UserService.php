@@ -23,4 +23,15 @@ class UserService
     {
         return $this->em->getRepository(User::class)->getUser($Id);
     }
+
+    public function getUsersNames($IdList)
+    {
+        $formattedResult = [];
+        $userNames = $this->em->getRepository(User::class)->getUsersNames($IdList);
+        foreach ($userNames as $userName) {
+            $formattedResult[$userName['id']] = $userName['name'];
+        }
+
+        return $formattedResult;
+    }
 }

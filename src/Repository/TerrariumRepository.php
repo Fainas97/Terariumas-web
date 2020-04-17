@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Terrarium;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -17,6 +18,14 @@ class TerrariumRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Terrarium::class);
+    }
+
+    public function getTerrariums()
+    {
+        return $this->createQueryBuilder('ter')
+            ->orderBy('ter.id', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**
