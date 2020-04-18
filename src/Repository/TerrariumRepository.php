@@ -28,6 +28,15 @@ class TerrariumRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function getTerrarium($id)
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Terrarium[] Returns an array of Terrarium objects
     //  */

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Exception;
-use App\Form\UserEditFormType;
+use App\Form\UserEditForm;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,7 +48,7 @@ class UsersController extends AbstractController
     public function edit(Request $request, int $id, UserService $userService): Response
     {
         $user = $userService->getUser($id);
-        $form = $this->createForm(UserEditFormType::class, $user);
+        $form = $this->createForm(UserEditForm::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -23,12 +23,13 @@
             <td>{{ terrarium.createdTime|date('Y-m-d h:i:s') }}</td>
             <td>{{ terrarium.updateTime|date('Y-m-d h:i:s') }}</td>
             <td class="text-center">
-                <a class="black" href="{{ path('edit_user', { 'id' : terrarium.id }) }}">
+                <a class="black" href="{{ path('edit_terrarium', { 'id' : terrarium.id }) }}">
                     <i class="fas fa-edit"></i>
                 </a>
             </td>
             <td class="text-center">
                 <a data-record-id="{{ terrarium.id }}" data-record-title="{{ terrarium.name }}"
+                   data-url="terrarium" data-name="terrariums-table"
                    data-toggle="modal" data-target="#confirm-delete">
                     <i class="fas fa-trash"></i>
                 </a>

@@ -24,10 +24,15 @@ class UserService
         return $this->em->getRepository(User::class)->getUser($Id);
     }
 
-    public function getUsersNames($IdList)
+    public function getUsersNames($terrariums)
     {
+        $idList = [];
+        foreach ($terrariums as $terrarium) {
+            $idList[$terrarium->getUserId()] = $terrarium->getUserId();
+        }
+
         $formattedResult = [];
-        $userNames = $this->em->getRepository(User::class)->getUsersNames($IdList);
+        $userNames = $this->em->getRepository(User::class)->getUsersNames($idList);
         foreach ($userNames as $userName) {
             $formattedResult[$userName['id']] = $userName['name'];
         }
