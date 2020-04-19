@@ -129,14 +129,13 @@ class User implements UserInterface
 
     public function getRoles(): array
     {
-        return array($this->admin);
+        return array($this->admin == 1 ? "ROLE_ADMIN" : "ROLE_USER");
     }
 
     public function getSalt()
     {
         return null;
     }
-
 
     public function getUsername(): string
     {

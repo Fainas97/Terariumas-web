@@ -6,6 +6,7 @@ use App\Entity\Terrarium;
 use App\Form\TerrariumForm;
 use App\Service\TerrariumService;
 use App\Service\UserService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,18 +14,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_USER", message="You need to login can access this page")
+ */
 class TerrariumController extends AbstractController
 {
     /**
      * @Route("/terrariums", name="terrariums_show")
+     * @IsGranted("ROLE_USER", message="You need to login can access this page")
      * @param TerrariumService $terrariumService
      * @param UserService $userService
      * @return Response
      */
     public function terrariums(TerrariumService $terrariumService, UserService $userService): Response
     {
-        $user = $this->getUser();
-        if ($user->getAdmin()) {
+        if ($this->isGranted('ROLE_ADMIN')) {
             $terrariums = $terrariumService->getTerrariums();
             $userNames = $userService->getUsersNames($terrariums);
 
@@ -33,10 +37,19 @@ class TerrariumController extends AbstractController
                 'userNames' => $userNames
             ]);
         }
+
+        $terrariums = $terrariumService->getUserTerrariums($this->getUser()->getId());
+        $userNames = $userService->getUsersNames($terrariums);
+
+        return $this->render('terrarium/terrariums.html.twig', [
+            'terrariums' => $terrariums,
+            'userNames' => $userNames
+        ]);
     }
 
     /**
      * @Route("/terrariums/create", name="create_terrariums")
+     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
      * @param Request $request
      * @param TerrariumService $terrariumService
      * @return Response
@@ -63,6 +76,7 @@ class TerrariumController extends AbstractController
 
     /**
      * @Route("/terrarium/edit/{id}", name="edit_terrarium")
+     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
      * @param Request $request
      * @param int $id
      * @param TerrariumService $terrariumService
@@ -89,6 +103,7 @@ class TerrariumController extends AbstractController
 
     /**
      * @Route("/terrarium/delete/{id}", name="delete_terrarium")
+     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
      * @param int $id
      * @param TerrariumService $terrariumService
      * @return Response
@@ -105,6 +120,7 @@ class TerrariumController extends AbstractController
 
     /**
      * @Route("/terrariums/table", name="terrariums_table", options={"expose" = true})
+     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
      * @param TerrariumService $terrariumService
      * @param UserService $userService
      * @return Response
