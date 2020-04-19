@@ -37,4 +37,14 @@ class UserRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    public function getUsersNames($IdList)
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.name, u.id')
+            ->where('u.id IN(:val)')
+            ->setParameter('val', array_values($IdList))
+            ->getQuery()
+            ->getArrayResult();
+    }
 }

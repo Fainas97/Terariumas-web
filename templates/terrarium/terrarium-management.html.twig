@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ title }}</h1>
+    {{ form_start(terrariumForm) }}
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(terrariumForm.Users) }}
+            </div>
+            {{ form_widget(terrariumForm.Users, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(terrariumForm.Users) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(terrariumForm.Name) }}
+            </div>
+            {{ form_widget(terrariumForm.Name, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(terrariumForm.Name) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(terrariumForm.Settings) }}
+            </div>
+            {{ form_widget(terrariumForm.Settings, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(terrariumForm.Settings) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(terrariumForm.Address) }}
+            </div>
+            {{ form_widget(terrariumForm.Address, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(terrariumForm.Address) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <button class="btn grey">Save</button>
+        </div>
+    </div>
+    {{ form_end(terrariumForm) }}
+{% endblock %}
