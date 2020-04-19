@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>Register user</h1>
+    <div class="alert-danger">
+        {{ form_errors(registrationForm) }}
+    </div>
     {{ form_start(registrationForm) }}
     <div class="row">
         <div class="col-lg-5 col-md-12 col-sm-12">

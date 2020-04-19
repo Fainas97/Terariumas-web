@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use Exception;
 use App\Form\UserEditForm;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\UserService;
 
+/**
+ * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+ */
 class UsersController extends AbstractController
 {
     /**
