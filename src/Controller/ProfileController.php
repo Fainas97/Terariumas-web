@@ -8,12 +8,16 @@ use App\Service\UserService;
 use App\Form\ProfileEditFormType;
 use App\Form\ProfilePasswordFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * @IsGranted("ROLE_USER", message="Only administrator can access this page")
+ */
 class ProfileController extends AbstractController
 {
     /**

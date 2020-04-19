@@ -7,9 +7,11 @@
         <div class="col-md-6 col-xs-6">
             <h2>Terrariums management</h2>
         </div>
+        {% if is_granted('ROLE_ADMIN') %}
         <div class="col-md-6 col-sm-6">
             <a class="btn grey float-right" href="{{ path('create_terrariums') }}">Add terrarium</a>
         </div>
+        {% endif %}
     </div>
     {% include 'modal/confirm.html.twig' %}
     {% for label, messages in app.flashes %}

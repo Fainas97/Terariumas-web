@@ -25,6 +25,11 @@ class TerrariumService
         return $this->em->getRepository(Terrarium::class)->getTerrarium($id);
     }
 
+    public function getUserTerrariums($user_id)
+    {
+        return $this->em->getRepository(Terrarium::class)->getUserTerrarium($user_id);
+    }
+
     public function prepareTerrariumData(Terrarium $terrarium, FormInterface $form)
     {
         $terrarium->setUserId($form->get('Users')->getData()->getId());

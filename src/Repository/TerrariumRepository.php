@@ -37,6 +37,15 @@ class TerrariumRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function getUserTerrarium($id)
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.user_id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Terrarium[] Returns an array of Terrarium objects
     //  */
