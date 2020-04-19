@@ -24,17 +24,17 @@ class Terrarium
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $name;
+    private string $name = '';
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="string")
      */
-    private array $settings = [];
+    private string $settings = '';
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $address;
+    private string $address = '';
 
     /**
      * @ORM\Column(type="datetime")
@@ -75,12 +75,12 @@ class Terrarium
         return $this;
     }
 
-    public function getSettings(): ?array
+    public function getSettings(): ?string
     {
         return $this->settings;
     }
 
-    public function setSettings(array $settings): self
+    public function setSettings(string $settings): self
     {
         $this->settings = $settings;
 
@@ -122,4 +122,5 @@ class Terrarium
 
         return $this;
     }
+
 }
