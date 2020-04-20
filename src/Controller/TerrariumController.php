@@ -15,13 +15,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @IsGranted("ROLE_USER", message="You need to login can access this page")
+ * @IsGranted("ROLE_USER", message="Only users access this page")
  */
 class TerrariumController extends AbstractController
 {
     /**
      * @Route("/terrariums", name="terrariums_show")
-     * @IsGranted("ROLE_USER", message="You need to login can access this page")
+     * @IsGranted("ROLE_USER", message="Only users access this page")
      * @param TerrariumService $terrariumService
      * @param UserService $userService
      * @return Response
@@ -145,6 +145,7 @@ class TerrariumController extends AbstractController
     {
         $terrarium = $terrariumService->prepareTerrariumData($terrarium, $form);
         $terrarium->setCreatedTime(new \DateTime('now'));
+        $terrarium->setAuth(bin2hex(random_bytes(32)));
         $this->saveTerrarium($terrarium);
 
         $this->addFlash('success', 'Terrarium has been added successfully!');

@@ -31,3 +31,6 @@ services:
 
     App\Service\TerrariumService:
         arguments: ["@doctrine.orm.entity_manager"]
+
+    App\Service\TerrariumDataService:
+        arguments: ["@doctrine.orm.entity_manager"]

@@ -46,6 +46,11 @@ class Terrarium
      */
     private ?\DateTimeInterface $created_time;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private ?string $auth;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +124,18 @@ class Terrarium
     public function setCreatedTime(\DateTimeInterface $created_time): self
     {
         $this->created_time = $created_time;
+
+        return $this;
+    }
+
+    public function getAuth(): ?string
+    {
+        return $this->auth;
+    }
+
+    public function setAuth(string $auth): self
+    {
+        $this->auth = $auth;
 
         return $this;
     }
