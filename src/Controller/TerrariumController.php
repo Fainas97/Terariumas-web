@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
  * @IsGranted("ROLE_USER", message="Only users access this page")
@@ -63,7 +68,13 @@ class TerrariumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->createTerrarium($terrarium, $form, $terrariumService);
+            $response = $this->httpRequest($form, $terrarium, $terrariumService);
+            if ($response == 'Received') {
+                $this->createTerrarium($terrarium, $form, $terrariumService);
+
+                return $this->redirectToRoute('terrariums_show');
+            }
+            $this->addFlash('error', 'Terrarium settings were not uploaded to Raspberry!');
 
             return $this->redirectToRoute('terrariums_show');
         }
@@ -89,7 +100,13 @@ class TerrariumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->updateTerrarium($terrarium, $form, $terrariumService);
+            $response = $this->httpRequest($form, $terrarium, $terrariumService);
+            if ($response == 'Received') {
+                $this->updateTerrarium($terrarium, $form, $terrariumService);
+
+                return $this->redirectToRoute('terrariums_show');
+            }
+            $this->addFlash('error', 'Terrarium settings were not uploaded to Raspberry!');
 
             return $this->redirectToRoute('terrariums_show');
         }
@@ -164,10 +181,43 @@ class TerrariumController extends AbstractController
         $this->addFlash('success', 'Terrarium has been updated successfully!');
     }
 
+    /**
+     * @param Terrarium $terrarium
+     */
     private function saveTerrarium(Terrarium $terrarium)
     {
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($terrarium);
         $entityManager->flush();
+    }
+
+    /**
+     * @param FormInterface $form
+     * @param Terrarium $terrarium
+     * @param TerrariumService $terrariumService
+     * @return string
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
+    private function httpRequest(FormInterface $form, Terrarium $terrarium, TerrariumService $terrariumService)
+    {
+        $client = HttpClient::create();
+        $parameters = $terrariumService->prepareRPiData($form->getData());
+        $response = $client->request( 'POST', $form->get('Url')->getData() . '/send/settings', [
+                'body' => [
+                    'auth' => $terrarium->getAuth(),
+                    'temp_low'  => $parameters['temp_low'],
+                    'temp_high'  => $parameters['temp_high'],
+                    'humi_low'  => $parameters['humi_low'],
+                    'humi_high'  => $parameters['humi_high'],
+                    'time_light_start'  => $parameters['time_light_start'],
+                    'time_light_end'  => $parameters['time_light_end']
+                ],
+            ]
+        );
+
+        return $response->getContent();
     }
 }

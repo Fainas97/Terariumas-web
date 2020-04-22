@@ -135,14 +135,14 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-.table-responsive{
-    height: 450px;
+.table-responsive {
     overflow-y: auto;
+    height: 450px;
 }
-
-thead tr:nth-child(1) th{
-    background: white;
+.table-responsive thead th {
     position: sticky;
     top: 0;
-    z-index: 10;
 }
+
+table  { border-collapse: collapse; }
+th     { background: white; }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,9 +28,19 @@ class Terrarium
     private string $name = '';
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=5)
      */
-    private string $settings = '';
+    private string $temperature_range = '';
+
+    /**
+     * @ORM\Column(type="string", length=5)
+     */
+    private string $humidity_range = '';
+
+    /**
+     * @ORM\Column(type="string", length=17)
+     */
+    private string $lighting_schedule = '';
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -39,105 +50,197 @@ class Terrarium
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeInterface $update_time;
+    private ?DateTimeInterface $update_time;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private ?\DateTimeInterface $created_time;
+    private ?DateTimeInterface $created_time;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=64)
      */
-    private ?string $auth;
+    private string $auth = '';
 
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private string $url = '';
+
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return int|null
+     */
     public function getUserId(): ?int
     {
         return $this->user_id;
     }
 
-    public function setUserId(int $user_id): self
+    /**
+     * @param int|null $user_id
+     */
+    public function setUserId(?int $user_id): void
     {
         $this->user_id = $user_id;
-
-        return $this;
     }
 
-    public function getName(): ?string
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
-    public function getSettings(): ?string
+    /**
+     * @return string
+     */
+    public function getTemperatureRange(): string
     {
-        return $this->settings;
+        return $this->temperature_range;
     }
 
-    public function setSettings(string $settings): self
+    /**
+     * @param string $temperature_range
+     */
+    public function setTemperatureRange(string $temperature_range): void
     {
-        $this->settings = $settings;
-
-        return $this;
+        $this->temperature_range = $temperature_range;
     }
 
-    public function getAddress(): ?string
+    /**
+     * @return string
+     */
+    public function getHumidityRange(): string
+    {
+        return $this->humidity_range;
+    }
+
+    /**
+     * @param string $humidity_range
+     */
+    public function setHumidityRange(string $humidity_range): void
+    {
+        $this->humidity_range = $humidity_range;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLightingSchedule(): string
+    {
+        return $this->lighting_schedule;
+    }
+
+    /**
+     * @param string $lighting_schedule
+     */
+    public function setLightingSchedule(string $lighting_schedule): void
+    {
+        $this->lighting_schedule = $lighting_schedule;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress(): string
     {
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    /**
+     * @param string $address
+     */
+    public function setAddress(string $address): void
     {
         $this->address = $address;
-
-        return $this;
     }
 
-    public function getUpdateTime(): ?\DateTimeInterface
+    /**
+     * @return DateTimeInterface|null
+     */
+    public function getUpdateTime(): ?DateTimeInterface
     {
         return $this->update_time;
     }
 
-    public function setUpdateTime(\DateTimeInterface $update_time): self
+    /**
+     * @param DateTimeInterface|null $update_time
+     */
+    public function setUpdateTime(?DateTimeInterface $update_time): void
     {
         $this->update_time = $update_time;
-
-        return $this;
     }
 
-    public function getCreatedTime(): ?\DateTimeInterface
+    /**
+     * @return DateTimeInterface|null
+     */
+    public function getCreatedTime(): ?DateTimeInterface
     {
         return $this->created_time;
     }
 
-    public function setCreatedTime(\DateTimeInterface $created_time): self
+    /**
+     * @param DateTimeInterface|null $created_time
+     */
+    public function setCreatedTime(?DateTimeInterface $created_time): void
     {
         $this->created_time = $created_time;
-
-        return $this;
     }
 
-    public function getAuth(): ?string
+    /**
+     * @return string
+     */
+    public function getAuth(): string
     {
         return $this->auth;
     }
 
-    public function setAuth(string $auth): self
+    /**
+     * @param string $auth
+     */
+    public function setAuth(string $auth): void
     {
         $this->auth = $auth;
+    }
 
-        return $this;
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl(string $url): void
+    {
+        $this->url = $url;
     }
 
 }

@@ -6,7 +6,7 @@
     <h1>{{ title }}</h1>
     {{ form_start(terrariumForm) }}
     <div class="row">
-        <div class="col-lg-5 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="label">
                 {{ form_label(terrariumForm.Users) }}
             </div>
@@ -15,9 +15,7 @@
                 {{ form_errors(terrariumForm.Users) }}
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-5 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="label">
                 {{ form_label(terrariumForm.Name) }}
             </div>
@@ -26,20 +24,34 @@
                 {{ form_errors(terrariumForm.Name) }}
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-5 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="label">
-                {{ form_label(terrariumForm.Settings) }}
+                {{ form_label(terrariumForm.Temperature_range) }}
             </div>
-            {{ form_widget(terrariumForm.Settings, { attr: { 'class': 'form-control' }}) }}
+            {{ form_widget(terrariumForm.Temperature_range, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
-                {{ form_errors(terrariumForm.Settings) }}
+                {{ form_errors(terrariumForm.Temperature_range) }}
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-5 col-md-12 col-sm-12">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(terrariumForm.Humidity_range) }}
+            </div>
+            {{ form_widget(terrariumForm.Humidity_range, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(terrariumForm.Humidity_range) }}
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(terrariumForm.Lighting_schedule) }}
+            </div>
+            {{ form_widget(terrariumForm.Lighting_schedule, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(terrariumForm.Lighting_schedule) }}
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
             <div class="label">
                 {{ form_label(terrariumForm.Address) }}
             </div>
@@ -48,10 +60,21 @@
                 {{ form_errors(terrariumForm.Address) }}
             </div>
         </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="label">
+                {{ form_label(terrariumForm.Url) }}
+            </div>
+            {{ form_widget(terrariumForm.Url, { attr: { 'class': 'form-control' }}) }}
+            <div class="alert-danger">
+                {{ form_errors(terrariumForm.Url) }}
+            </div>
+        </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-md-6 col-xs-6">
             <button class="btn grey">Save</button>
+            <button class="btn white-grey" type="reset">Reset</button>
         </div>
     </div>
     {{ form_end(terrariumForm) }}

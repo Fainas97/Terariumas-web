@@ -27,6 +27,7 @@ class TerrariumDataRepository extends ServiceEntityRepository
             FROM `terrarium_data` as ter
             LEFT JOIN terrarium as t ON ter.terrarium_id = t.id
             LEFT JOIN user as u ON t.user_id = u.id
+            ORDER BY ter.time DESC
             ';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
@@ -43,6 +44,7 @@ class TerrariumDataRepository extends ServiceEntityRepository
             LEFT JOIN terrarium as t ON ter.terrarium_id = t.id
             LEFT JOIN user as u ON t.user_id = u.id
             WHERE u.id = ?
+            ORDER BY ter.time DESC
             ';
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $user_id, "integer");
