@@ -58,7 +58,10 @@ class TerrariumController extends AbstractController
      * @param Request $request
      * @param TerrariumService $terrariumService
      * @return Response
-     * @throws \Exception
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function create(Request $request, TerrariumService $terrariumService): Response
     {
@@ -92,6 +95,10 @@ class TerrariumController extends AbstractController
      * @param int $id
      * @param TerrariumService $terrariumService
      * @return Response
+     * @throws ClientExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
      */
     public function edit(Request $request, int $id, TerrariumService $terrariumService): Response
     {

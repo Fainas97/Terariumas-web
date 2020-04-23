@@ -38,6 +38,28 @@ class TerrariumDataController extends AbstractController
     }
 
     /**
+     * @Route("/terrariums/table/data", name="terrariums_data_table", options={"expose" = true})
+     * @IsGranted("ROLE_USER", message="Only users access this page")
+     * @param TerrariumDataService $terrariumDataService
+     * @return Response
+     */
+    public function terrariumDataTable(TerrariumDataService $terrariumDataService)
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $terrariumsData = $terrariumDataService->getTerrariumsData();
+
+            return new Response($this->renderView('table/data-table.html.twig', [
+                'terrariumsData' => $terrariumsData
+            ]));
+        }
+        $terrariumsData = $terrariumDataService->getUsersTerrariumsData($this->getUser()->getId());
+
+        return new Response($this->renderView('table/data-table.html.twig', [
+            'terrariumsData' => $terrariumsData
+        ]));
+    }
+
+    /**
      * @Route("/terrarium/data")
      * @param Request $request
      * @param TerrariumService $terrariumService
@@ -58,7 +80,7 @@ class TerrariumDataController extends AbstractController
         return new JsonResponse(array('false'));
     }
 
-    private function saveTerrariumData($receivedRequest, $id)
+    private function saveTerrariumData(array $receivedRequest, int $id)
     {
         $terrariumData = new TerrariumData();
         $terrariumData->setTerrariumId($id);

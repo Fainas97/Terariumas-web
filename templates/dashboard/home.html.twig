@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block body %}
     <h2>Terrariums Data</h2>
     <div class="table-responsive">
         {% include 'table/data-table.html.twig' %}
     </div>
+    <script>
+        setInterval(function () {
+            this.getData('terrariums-data-table', 'Terrariums data');
+        }, 30000)
+    </script>
 {% endblock %}
