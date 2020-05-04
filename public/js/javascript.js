@@ -57,6 +57,17 @@ $(document).ready(function() {
             });
     });
 
+    $('#start-stream').on('show.bs.modal', function(e) {
+        let data = $(e.relatedTarget).data();
+        $('.title', this).text(data.recordTitle);
+        // $('.btn-ok', this).data('data',
+        //     {
+        //         'id' : data.recordId,
+        //         'url' : data.url,
+        //         'name' : data.name
+        //     });
+    });
+
     if ($('#alert').is(':visible')) {
         setTimeout(function(){
             $('#alert').fadeOut(1000);

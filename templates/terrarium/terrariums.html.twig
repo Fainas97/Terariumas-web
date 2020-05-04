@@ -13,6 +13,7 @@
         </div>
         {% endif %}
     </div>
+    {% include 'modal/iframe.html.twig' %}
     {% include 'modal/confirm.html.twig' %}
     {% for label, messages in app.flashes %}
         {% for message in messages %}
