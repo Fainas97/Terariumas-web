@@ -71,7 +71,7 @@ class MessageController extends AbstractController
         $message->setTerrariumId($id);
         $message->setMessage($receivedRequest['message']);
         $message->setTime(new \DateTime('now'));
-        $message->setActive(1);
+        $message->setActive($receivedRequest['active']);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($message);

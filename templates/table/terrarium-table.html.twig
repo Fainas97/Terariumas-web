@@ -26,6 +26,10 @@
             <td>{{ terrarium.createdTime|date('Y-m-d H:i:s') }}</td>
             <td>{{ terrarium.updateTime|date('Y-m-d H:i:s') }}</td>
             <td class="text-center">
+                <a data-record-url="{{ terrarium.url }}" data-record-title="{{ terrarium.name }}"
+                   data-toggle="modal" data-target="#start-stream">
+                    <i class="fas fa-camera"></i>
+                </a>
                 <a class="black" href="{{ path('edit_terrarium', { 'id' : terrarium.id }) }}">
                     <i class="fas fa-edit"></i>
                 </a>
@@ -33,13 +37,6 @@
                    data-url="terrarium" data-name="terrariums-table"
                    data-toggle="modal" data-target="#confirm-delete">
                     <i class="fas fa-trash"></i>
-                </a>
-            </td>
-            <td class="text-center">
-                <a data-record-id="{{ terrarium.id }}" data-record-title="{{ terrarium.name }}"
-                   data-url="terrarium" data-name="terrariums-table"
-                   data-toggle="modal" data-target="#start-stream">
-                    <i class="fas fa-camera"></i>
                 </a>
             </td>
         </tr>
