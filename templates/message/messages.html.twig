@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messages{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 col-xs-6">
+            <h2>Terrariums messages</h2>
+        </div>
+    </div>
+    {% include 'modal/confirm.html.twig' %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div id="alert" class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <div class="table-responsive">
+        {% include 'table/message-table.html.twig' %}
+    </div>
+    <script>
+        setInterval(function () {
+            this.getData('messages-table', 'Messages');
+            }, 30000)
+    </script>
+{% endblock %}

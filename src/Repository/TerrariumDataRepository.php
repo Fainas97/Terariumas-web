@@ -19,32 +19,38 @@ class TerrariumDataRepository extends ServiceEntityRepository
         parent::__construct($registry, TerrariumData::class);
     }
 
-    // /**
-    //  * @return TerrariumData[] Returns an array of TerrariumData objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getTerrariumsData()
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+            SELECT u.name as userName, t.name as terName, ter.temperature, ter.humidity, ter.light, ter.heater, ter.time 
+            FROM `terrarium_data` as ter
+            LEFT JOIN terrarium as t ON ter.terrarium_id = t.id
+            LEFT JOIN user as u ON t.user_id = u.id
+            ORDER BY ter.time DESC
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
 
-    /*
-    public function findOneBySomeField($value): ?TerrariumData
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $stmt->fetchAll();
     }
-    */
+
+    public function getUserTerrariumsData($user_id)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+            SELECT u.name as userName, t.name as terName, ter.temperature, ter.humidity, ter.light, ter.heater, ter.time 
+            FROM `terrarium_data` as ter
+            LEFT JOIN terrarium as t ON ter.terrarium_id = t.id
+            LEFT JOIN user as u ON t.user_id = u.id
+            WHERE u.id = ?
+            ORDER BY ter.time DESC
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(1, $user_id, "integer");
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
 }

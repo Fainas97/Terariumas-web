@@ -30,14 +30,37 @@ class TerrariumService
         return $this->em->getRepository(Terrarium::class)->getUserTerrarium($user_id);
     }
 
+    public function getTerrariumByAuth($auth)
+    {
+        return $this->em->getRepository(Terrarium::class)->findOneBy(['auth' => $auth]);
+    }
+
     public function prepareTerrariumData(Terrarium $terrarium, FormInterface $form)
     {
         $terrarium->setUserId($form->get('Users')->getData()->getId());
-        $terrarium->setSettings(
-            json_encode($form->get('Settings')->getData())
-        );
+        $terrarium->setTemperatureRange($form->get('Temperature_range')->getData());
+        $terrarium->setHumidityRange($form->get('Humidity_range')->getData());
+        $terrarium->setLightingSchedule($form->get('Lighting_schedule')->getData());
+        $terrarium->setUrl($form->get('Url')->getData());
         $terrarium->setUpdateTime(new \DateTime('now'));
 
         return $terrarium;
+    }
+
+    public function prepareRPiData($data)
+    {
+        $tempList = explode(':', $data->getTemperatureRange());
+        $humiList = explode(':', $data->getHumidityRange());
+        $timeList = explode('-', $data->getLightingSchedule());
+
+        $parameters = [];
+        $parameters['temp_low'] = $tempList[0];
+        $parameters['temp_high'] = $tempList[1];
+        $parameters['humi_low'] = $humiList[0];
+        $parameters['humi_high'] = $humiList[1];
+        $parameters['time_light_start'] = $timeList[0];
+        $parameters['time_light_end'] = $timeList[1];
+
+        return $parameters;
     }
 }

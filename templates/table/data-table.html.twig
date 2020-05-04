@@ -1,0 +1,26 @@
+<table class="table table-striped table-sm" id="terrariums-data-table">
+    <thead>
+    <tr>
+        <th>User</th>
+        <th>Terrarium</th>
+        <th>Temperature</th>
+        <th>Humidity</th>
+        <th>Light</th>
+        <th>Heater</th>
+        <th>Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for terrariumData in terrariumsData %}
+        <tr>
+            <td>{{ terrariumData.userName }}</td>
+            <td>{{ terrariumData.terName }}</td>
+            <td>{{ terrariumData.temperature }}°C</td>
+            <td>{{ terrariumData.humidity }}%</td>
+            <td>{{ terrariumData.light }}</td>
+            <td>{{ terrariumData.heater }}</td>
+            <td>{{ terrariumData.time|date('Y-m-d H:i:s') }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

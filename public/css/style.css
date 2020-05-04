@@ -134,3 +134,15 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.table-responsive {
+    overflow-y: auto;
+    height: 450px;
+}
+.table-responsive thead th {
+    position: sticky;
+    top: 0;
+}
+
+table  { border-collapse: collapse; }
+th     { background: white; }
