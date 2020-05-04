@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Entity\Terrarium;
 use App\Form\TerrariumForm;
 use App\Service\TerrariumService;
@@ -58,10 +59,7 @@ class TerrariumController extends AbstractController
      * @param Request $request
      * @param TerrariumService $terrariumService
      * @return Response
-     * @throws ClientExceptionInterface
-     * @throws RedirectionExceptionInterface
-     * @throws ServerExceptionInterface
-     * @throws TransportExceptionInterface
+     * @throws Exception
      */
     public function create(Request $request, TerrariumService $terrariumService): Response
     {
@@ -71,13 +69,7 @@ class TerrariumController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $response = $this->httpRequest($form, $terrarium, $terrariumService);
-            if ($response == 'Received') {
-                $this->createTerrarium($terrarium, $form, $terrariumService);
-
-                return $this->redirectToRoute('terrariums_show');
-            }
-            $this->addFlash('error', 'Terrarium settings were not uploaded to Raspberry!');
+            $this->createTerrarium($terrarium, $form, $terrariumService);
 
             return $this->redirectToRoute('terrariums_show');
         }
@@ -163,7 +155,7 @@ class TerrariumController extends AbstractController
      * @param Terrarium $terrarium
      * @param FormInterface $form
      * @param TerrariumService $terrariumService
-     * @throws \Exception
+     * @throws Exception
      */
     private function createTerrarium(Terrarium $terrarium, FormInterface $form, TerrariumService $terrariumService)
     {
@@ -215,10 +207,10 @@ class TerrariumController extends AbstractController
         $response = $client->request( 'POST', $form->get('Url')->getData() . '/send/settings', [
                 'body' => [
                     'auth' => $terrarium->getAuth(),
-                    'temp_low'  => $parameters['temp_low'],
-                    'temp_high'  => $parameters['temp_high'],
-                    'humi_low'  => $parameters['humi_low'],
-                    'humi_high'  => $parameters['humi_high'],
+                    'temp_limit'  => $parameters['temp_limit'],
+                    'temp_hysteresis'  => $parameters['temp_hysteresis'],
+                    'humi_limit'  => $parameters['humi_limit'],
+                    'humi_hysteresis'  => $parameters['humi_hysteresis'],
                     'time_light_start'  => $parameters['time_light_start'],
                     'time_light_end'  => $parameters['time_light_end']
                 ],

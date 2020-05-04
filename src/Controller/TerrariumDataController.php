@@ -30,7 +30,7 @@ class TerrariumDataController extends AbstractController
                 'terrariumsData' => $terrariumsData
             ]);
         }
-        $terrariumsData = $terrariumDataService->getUsersTerrariumsData($this->getUser()->getId());
+        $terrariumsData = $terrariumDataService->getUserTerrariumsData($this->getUser()->getId());
 
         return $this->render('dashboard/home.html.twig', [
             'terrariumsData' => $terrariumsData
@@ -73,6 +73,7 @@ class TerrariumDataController extends AbstractController
 
         if ($terrarium) {
             $this->saveTerrariumData($receivedRequest, $terrarium->getId());
+
 
             return new JsonResponse(array('success'));
         }

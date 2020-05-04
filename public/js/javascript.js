@@ -59,12 +59,7 @@ $(document).ready(function() {
     $('#start-stream').on('show.bs.modal', function(e) {
         let data = $(e.relatedTarget).data();
         $('.title', this).text(data.recordTitle);
-        // $('.btn-ok', this).data('data',
-        //     {
-        //         'id' : data.recordId,
-        //         'url' : data.url,
-        //         'name' : data.name
-        //     });
+        $('.iframe-video', this).attr('src', data.recordUrl.replace("8090", "8000"));
     });
 
     if ($('#alert').is(':visible')) {
