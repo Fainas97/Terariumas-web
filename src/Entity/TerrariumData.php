@@ -17,6 +17,11 @@ class TerrariumData
     private ?int $id;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private ?int $terrarium_id;
+
+    /**
      * @ORM\Column(type="decimal", precision=6, scale=2)
      */
     private ?string $temperature;
@@ -32,18 +37,30 @@ class TerrariumData
     private ?bool $light;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private ?bool $heater;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private ?\DateTimeInterface $time;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private ?int $terrarium_id;
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getTerrariumId(): ?int
+    {
+        return $this->terrarium_id;
+    }
+
+    public function setTerrariumId(int $terrarium_id): self
+    {
+        $this->terrarium_id = $terrarium_id;
+
+        return $this;
     }
 
     public function getTemperature(): ?string
@@ -82,6 +99,19 @@ class TerrariumData
         return $this;
     }
 
+
+    public function getHeater(): ?bool
+    {
+        return $this->heater;
+    }
+
+    public function setHeater(bool $heater): self
+    {
+        $this->heater = $heater;
+
+        return $this;
+    }
+
     public function getTime(): ?\DateTimeInterface
     {
         return $this->time;
@@ -94,15 +124,4 @@ class TerrariumData
         return $this;
     }
 
-    public function getTerrariumId(): ?int
-    {
-        return $this->terrarium_id;
-    }
-
-    public function setTerrariumId(int $terrarium_id): self
-    {
-        $this->terrarium_id = $terrarium_id;
-
-        return $this;
-    }
 }

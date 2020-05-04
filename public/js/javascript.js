@@ -41,7 +41,6 @@ $(document).ready(function() {
                 },{
                     delay: 10000
                 });
-
             },
         });
     });
@@ -62,6 +61,7 @@ $(document).ready(function() {
             $('#alert').fadeOut(1000);
         }, 10000);
     }
+
 });
 
 function reloadTableData(tableName) {
@@ -69,4 +69,17 @@ function reloadTableData(tableName) {
     table.html('<div class="loader"></div>');
     let url = Routing.generate(tableName.replace('-', '_'));
     table.load(url);
+}
+
+function getData(id, message) {
+    let table = $('#' + id);
+    table.html('<div class="loader"></div>');
+    let url = Routing.generate(id.replace(/-/g, '_'));
+    table.load(url);
+    $.notify({
+        title: '<b>Success!</b>',
+        message: message + ' refreshed'
+    },{
+        delay: 5000
+    });
 }
