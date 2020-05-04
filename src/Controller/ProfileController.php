@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @IsGranted("ROLE_USER", message="Only administrator can access this page")
+ * @IsGranted("ROLE_USER", message="Only users access this page")
  */
 class ProfileController extends AbstractController
 {

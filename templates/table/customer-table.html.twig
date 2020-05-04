@@ -18,8 +18,8 @@
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.admin ? 'Admin' : 'Client' }}</td>
-            <td>{{ user.createdDate|date('Y-m-d h:i:s') }}</td>
-            <td>{{ user.updateDate|date('Y-m-d h:i:s') }}</td>
+            <td>{{ user.createdDate|date('Y-m-d H:i:s') }}</td>
+            <td>{{ user.updateDate|date('Y-m-d H:i:s') }}</td>
             <td class="text-center">
                 <a class="black" href="{{ path('edit_user', { 'id' : user.id }) }}">
                     <i class="fas fa-edit"></i>

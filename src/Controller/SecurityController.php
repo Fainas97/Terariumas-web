@@ -15,7 +15,7 @@ class SecurityController extends AbstractController
     public function index(): Response
     {
         if ($this->getUser()) {
-            return $this->render('dashboard/home.html.twig');
+            return $this->redirectToRoute('home_page');
         }
 
         return $this->redirectToRoute('app_login');

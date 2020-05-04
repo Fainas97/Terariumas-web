@@ -4,12 +4,13 @@
         <th>#</th>
         <th>User</th>
         <th>Name</th>
-        <th>Settings</th>
+        <th>Temperature</th>
+        <th>Humidity</th>
+        <th>Lighting</th>
         <th>Address</th>
         <th>Created</th>
         <th>Updated</th>
-        <th class="text-center">Edit</th>
-        <th class="text-center">Delete</th>
+        <th class="text-center">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -18,16 +19,16 @@
             <td>{{ terrarium.id }}</td>
             <td>{{ userNames[terrarium.userId] }}</td>
             <td>{{ terrarium.name }}</td>
-            <td>{{ terrarium.settings }}</td>
+            <td>{{ terrarium.temperatureRange }}°C</td>
+            <td>{{ terrarium.humidityRange }}%</td>
+            <td>{{ terrarium.lightingSchedule }}</td>
             <td>{{ terrarium.address }}</td>
-            <td>{{ terrarium.createdTime|date('Y-m-d h:i:s') }}</td>
-            <td>{{ terrarium.updateTime|date('Y-m-d h:i:s') }}</td>
+            <td>{{ terrarium.createdTime|date('Y-m-d H:i:s') }}</td>
+            <td>{{ terrarium.updateTime|date('Y-m-d H:i:s') }}</td>
             <td class="text-center">
                 <a class="black" href="{{ path('edit_terrarium', { 'id' : terrarium.id }) }}">
                     <i class="fas fa-edit"></i>
                 </a>
-            </td>
-            <td class="text-center">
                 <a data-record-id="{{ terrarium.id }}" data-record-title="{{ terrarium.name }}"
                    data-url="terrarium" data-name="terrariums-table"
                    data-toggle="modal" data-target="#confirm-delete">
