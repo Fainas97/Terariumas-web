@@ -54,10 +54,10 @@ class TerrariumService
         $timeList = explode('-', $data->getLightingSchedule());
 
         $parameters = [];
-        $parameters['temp_low'] = $tempList[0];
-        $parameters['temp_high'] = $tempList[1];
-        $parameters['humi_low'] = $humiList[0];
-        $parameters['humi_high'] = $humiList[1];
+        $parameters['temp_limit'] = $tempList[0];
+        $parameters['temp_hysteresis'] = $tempList[1];
+        $parameters['humi_limit'] = $humiList[0];
+        $parameters['humi_hysteresis'] = $humiList[1];
         $parameters['time_light_start'] = $timeList[0];
         $parameters['time_light_end'] = $timeList[1];
 

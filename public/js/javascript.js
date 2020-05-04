@@ -56,6 +56,12 @@ $(document).ready(function() {
             });
     });
 
+    $('#start-stream').on('show.bs.modal', function(e) {
+        let data = $(e.relatedTarget).data();
+        $('.title', this).text(data.recordTitle);
+        $('.iframe-video', this).attr('src', data.recordUrl.replace("8090", "8000"));
+    });
+
     if ($('#alert').is(':visible')) {
         setTimeout(function(){
             $('#alert').fadeOut(1000);

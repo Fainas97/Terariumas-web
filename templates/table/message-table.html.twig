@@ -4,16 +4,18 @@
         <th>Terrarium</th>
         <th>Message</th>
         <th>Time</th>
-        <th>Active</th>
     </tr>
     </thead>
     <tbody>
     {% for message in messages %}
-        <tr>
-            <td>{{ message.name }}</td>
-            <td>{{ message.message }}</td>
-            <td>{{ message.time }}</td>
-            <td>{{ message.active }}</td>
+        {% if message.active == 1 %}
+            <tr style="color: red">
+        {% else %}
+            <tr>
+        {% endif %}
+        <td>{{ message.name }}</td>
+        <td>{{ message.message }}</td>
+        <td>{{ message.time }}</td>
         </tr>
     {% endfor %}
     </tbody>
