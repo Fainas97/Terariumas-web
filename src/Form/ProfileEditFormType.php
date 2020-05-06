@@ -22,9 +22,9 @@ class ProfileEditFormType extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your name should contain at least {{ limit }} characters',
+                        'minMessage' => 'Vartotojo vardas turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 70,
-                        'maxMessage' => 'Your name should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'Vartotojo vardas turi turėti ne daugiau nei {{ limit }} simbolius',
                     ])
                 ],
                 'required' => true,
@@ -33,21 +33,21 @@ class ProfileEditFormType extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your email should contain at least {{ limit }} characters',
+                        'minMessage' => 'El. paštas turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 100,
-                        'maxMessage' => 'Your email should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'El. paštas turi turėti ne daugiau nei {{ limit }} simbolius',
                     ])
                 ],
                 'required' => true,
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Slaptažodžių laukai turi sutapti',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat password'],
-                'constraints' => new UserPassword(array('message' => 'Password is incorrect!')),
+                'constraints' => new UserPassword(array('message' => 'Slaptažodis neteisingas')),
                 'mapped' => false
             ]);
     }

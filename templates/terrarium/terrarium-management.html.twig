@@ -4,66 +4,53 @@
 
 {% block body %}
     <h1>{{ title }}</h1>
+    <hr>
     {{ form_start(terrariumForm) }}
     <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(terrariumForm.Users) }}
-            </div>
+            <div class="label">Vartotojai</div>
             {{ form_widget(terrariumForm.Users, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(terrariumForm.Users) }}
             </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(terrariumForm.Name) }}
-            </div>
+            <div class="label">Terariumo pavadinimas</div>
             {{ form_widget(terrariumForm.Name, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(terrariumForm.Name) }}
             </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(terrariumForm.Temperature_range) }}
-            </div>
+            <div class="label">Temperatūros riba ir histerizė</div>
             {{ form_widget(terrariumForm.Temperature_range, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(terrariumForm.Temperature_range) }}
             </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(terrariumForm.Humidity_range) }}
-            </div>
+            <div class="label">Drėgmės riba ir histerizė</div>
             {{ form_widget(terrariumForm.Humidity_range, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(terrariumForm.Humidity_range) }}
             </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(terrariumForm.Lighting_schedule) }}
-            </div>
+            <div class="label">Apšvietimo grafikas</div>
             {{ form_widget(terrariumForm.Lighting_schedule, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(terrariumForm.Lighting_schedule) }}
             </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(terrariumForm.Address) }}
-            </div>
+            <div class="label">Adresas</div>
             {{ form_widget(terrariumForm.Address, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(terrariumForm.Address) }}
             </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(terrariumForm.Url) }}
-            </div>
+            <div class="label">Valdiklio tinklalapio adresas</div>
             {{ form_widget(terrariumForm.Url, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(terrariumForm.Url) }}
@@ -73,8 +60,8 @@
     <hr>
     <div class="row">
         <div class="col-md-6 col-xs-6">
-            <button class="btn grey">Save</button>
-            <button class="btn white-grey" type="reset">Reset</button>
+            <button class="btn btn-lg grey">Išsaugoti</button>
+            <button class="btn btn-lg white-grey" type="reset">Atstatyti</button>
         </div>
     </div>
     {{ form_end(terrariumForm) }}

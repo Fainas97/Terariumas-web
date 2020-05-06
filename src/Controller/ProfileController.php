@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @IsGranted("ROLE_USER", message="Only users access this page")
+ * @IsGranted("ROLE_USER", message="Tik prisijungę vartotojai gali pasiekti ši puslapį")
  */
 class ProfileController extends AbstractController
 {
@@ -83,7 +83,7 @@ class ProfileController extends AbstractController
         $user->setUpdateDate(new \DateTime('now'));
         $this->entityManager->persist($user);
         $this->entityManager->flush();
-        $this->addFlash('success', 'Your password has been successfully updated!');
+        $this->addFlash('success', 'Jūsų slaptažodis buvo sėkmingai atnaujintas!');
     }
 
     /**
@@ -96,6 +96,6 @@ class ProfileController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        $this->addFlash('success', 'Your profile has been successfully updated!');
+        $this->addFlash('success', 'Jūsų profilis buvo sėkmingai atnaujintas!');
     }
 }

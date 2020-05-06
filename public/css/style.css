@@ -5,6 +5,7 @@ body {
 .label {
     margin-top: 10px;
     font-weight: lighter;
+    font-weight: bold;
 }
 
 .form-margin {

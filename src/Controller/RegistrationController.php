@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+ * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
  */
 class RegistrationController extends AbstractController
 {
@@ -46,7 +46,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email TODO
-            $this->addFlash('success', 'User has been created successfully!');
+            $this->addFlash('success', 'Vartotojo paskyra sėkmingai sukurta!');
 
             return $this->redirectToRoute('app_users');
         }

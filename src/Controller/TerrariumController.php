@@ -22,13 +22,13 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 /**
- * @IsGranted("ROLE_USER", message="Only users access this page")
+ * @IsGranted("ROLE_USER", message="Tik prisijungę vartotojai gali pasiekti ši puslapį")
  */
 class TerrariumController extends AbstractController
 {
     /**
      * @Route("/terrariums", name="terrariums_show")
-     * @IsGranted("ROLE_USER", message="Only users access this page")
+     * @IsGranted("ROLE_USER", message="Tik prisijungę vartotojai gali pasiekti ši puslapį")
      * @param TerrariumService $terrariumService
      * @param UserService $userService
      * @return Response
@@ -56,7 +56,7 @@ class TerrariumController extends AbstractController
 
     /**
      * @Route("/terrariums/create", name="create_terrariums")
-     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+     * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param Request $request
      * @param TerrariumService $terrariumService
      * @return Response
@@ -76,14 +76,14 @@ class TerrariumController extends AbstractController
         }
 
         return $this->render('terrarium/terrarium-management.html.twig', [
-            'title' => 'Add terrarium',
+            'title' => 'Pridėti terariumą',
             'terrariumForm' => $form->createView()
         ]);
     }
 
     /**
      * @Route("/terrarium/edit/{id}", name="edit_terrarium")
-     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+     * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param Request $request
      * @param int $id
      * @param TerrariumService $terrariumService
@@ -106,13 +106,13 @@ class TerrariumController extends AbstractController
 
                 return $this->redirectToRoute('terrariums_show');
             }
-            $this->addFlash('error', 'Terrarium settings were not uploaded to Raspberry!');
+            $this->addFlash('error', 'Terariumo nustatymai nebuvo nusiųsti į Raspberry!');
 
             return $this->redirectToRoute('terrariums_show');
         }
 
         return $this->render('terrarium/terrarium-management.html.twig', [
-            'title' => 'Edit terrarium',
+            'title' => 'Redaguoti terariumą',
             'terrariumForm' => $form->createView(),
             'terrarium' => $terrarium
         ]);
@@ -120,7 +120,7 @@ class TerrariumController extends AbstractController
 
     /**
      * @Route("/terrarium/delete/{id}", name="delete_terrarium")
-     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+     * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param int $id
      * @param TerrariumService $terrariumService
      * @return Response
@@ -132,12 +132,12 @@ class TerrariumController extends AbstractController
         $entityManager->remove($terrarium);
         $entityManager->flush();
 
-        return new JsonResponse(array('success' => 'Terrarium "' . $terrarium->getName() . '" has been removed!'));
+        return new JsonResponse(array('success' => 'Terariumas "' . $terrarium->getName() . '" buvo pašalintas!'));
     }
 
     /**
      * @Route("/terrariums/routes", name="terrariums_routes")
-     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+     * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param TerrariumService $terrariumService
      * @param TerrariumDataService $terrariumDataService
      * @return Response
@@ -157,7 +157,7 @@ class TerrariumController extends AbstractController
 
     /**
      * @Route("/terrariums/table", name="terrariums_table", options={"expose" = true})
-     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+     * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param TerrariumService $terrariumService
      * @param UserService $userService
      * @return Response
@@ -185,7 +185,7 @@ class TerrariumController extends AbstractController
         $terrarium->setAuth(bin2hex(random_bytes(32)));
         $this->saveTerrarium($terrarium);
 
-        $this->addFlash('success', 'Terrarium has been added successfully!');
+        $this->addFlash('success', 'Terariumas buvo buvo sėkmingai pridėtas!');
     }
 
     /**
@@ -198,7 +198,7 @@ class TerrariumController extends AbstractController
         $terrarium = $terrariumService->prepareTerrariumData($terrarium, $form);
         $this->saveTerrarium($terrarium);
 
-        $this->addFlash('success', 'Terrarium has been updated successfully!');
+        $this->addFlash('success', 'Terariumas buvo buvo sėkmingai atnaujintas!');
     }
 
     /**

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\UserService;
 
 /**
- * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+ * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
  */
 class UsersController extends AbstractController
 {
@@ -78,7 +78,7 @@ class UsersController extends AbstractController
         $entityManager->remove($user);
         $entityManager->flush();
 
-        return new JsonResponse(array('success' => 'User "' . $user->getName() . '" has been removed!'));
+        return new JsonResponse(array('success' => 'Vartotojas "' . $user->getName() . '" buvo sėkmingai pašalintas!'));
     }
 
     /**
@@ -106,6 +106,6 @@ class UsersController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        $this->addFlash('success', 'User profile has been successfully updated!');
+        $this->addFlash('success', 'Vartotojo paskyra buvo sėkmingai atnaujinta!');
     }
 }
