@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\TerrariumDataService;
 use Exception;
 use App\Entity\Terrarium;
 use App\Form\TerrariumForm;
@@ -135,6 +136,26 @@ class TerrariumController extends AbstractController
     }
 
     /**
+     * @Route("/terrariums/routes", name="terrariums_routes")
+     * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+     * @param TerrariumService $terrariumService
+     * @param TerrariumDataService $terrariumDataService
+     * @return Response
+     */
+    public function routes(TerrariumService $terrariumService, TerrariumDataService $terrariumDataService): Response
+    {
+        $terrariums = $terrariumService->getTerrariums();
+        $terrariumDataAverages = $terrariumDataService->getLatestTerrariumData();
+
+        $indicatorsLimits = $terrariumService->getIndicatorsLimits($terrariums);
+        $routes = $terrariumService->calculateRoutes($indicatorsLimits, $terrariumDataAverages);
+
+        return $this->render('routes/routes.html.twig', [
+            'routes' => $routes
+        ]);
+    }
+
+    /**
      * @Route("/terrariums/table", name="terrariums_table", options={"expose" = true})
      * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
      * @param TerrariumService $terrariumService
@@ -219,4 +240,5 @@ class TerrariumController extends AbstractController
 
         return $response->getContent();
     }
+
 }

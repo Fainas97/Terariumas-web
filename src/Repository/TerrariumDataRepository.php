@@ -53,4 +53,29 @@ class TerrariumDataRepository extends ServiceEntityRepository
         return $stmt->fetchAll();
     }
 
+    public function getLatestTerrariumData()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = '
+            SELECT terrarium_id, 
+                round(avg(temperature), 2) as temperature, 
+                round(avg(humidity), 2) as humidity
+            FROM (
+              SELECT
+                terrarium_id,
+                temperature,
+                humidity,
+                time,
+                DENSE_RANK() OVER (PARTITION BY terrarium_id ORDER BY time DESC) AS rank
+              FROM terrarium_data
+            ) AS ter
+            WHERE ter.rank <= 10
+            GROUP BY terrarium_id;
+            ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
 }

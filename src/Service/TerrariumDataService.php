@@ -24,4 +24,9 @@ class TerrariumDataService
         return $this->em->getRepository(TerrariumData::class)->getUserTerrariumsData($userId);
     }
 
+    public function getLatestTerrariumData()
+    {
+        return $this->em->getRepository(TerrariumData::class)->getLatestTerrariumData();
+    }
+
 }
