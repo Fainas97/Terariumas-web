@@ -144,12 +144,14 @@ class TerrariumController extends AbstractController
      */
     public function routes(TerrariumService $terrariumService, TerrariumDataService $terrariumDataService): Response
     {
+        $terrariums = $terrariumService->getTerrariums();
         $terrariumDataAverages = $terrariumDataService->getLatestTerrariumData();
 
-        dump($terrariumDataAverages);die;
+        $indicatorsLimits = $terrariumService->getIndicatorsLimits($terrariums);
+        $routes = $terrariumService->calculateRoutes($indicatorsLimits, $terrariumDataAverages);
 
         return $this->render('routes/routes.html.twig', [
-            'routes' => $terrariumDataAverages
+            'routes' => $routes
         ]);
     }
 
@@ -238,4 +240,5 @@ class TerrariumController extends AbstractController
 
         return $response->getContent();
     }
+
 }

@@ -3,15 +3,25 @@
     <tr>
         <th>Terrarium</th>
         <th>Address</th>
-        <th>Time</th>
+        <th>Temperature limit</th>
+        <th>Temperature</th>
+        <th>Humidity limit</th>
+        <th>Humidity</th>
+        <th>Rating</th>
+        <th>Condition</th>
     </tr>
     </thead>
     <tbody>
     {% for route in routes %}
-        <tr>
+        <tr style="color: {{ route.condition }}">
             <td>{{ route.terrarium }}</td>
             <td>{{ route.address }}</td>
-            <td>{{ route.time }}</td>
+            <td>{{ route.temperature_limit }}</td>
+            <td>{{ route.temperature }}</td>
+            <td>{{ route.humidity_limit }}</td>
+            <td>{{ route.humidity }}</td>
+            <td>{{ route.rating }}</td>
+            <td>{{ route.status }}</td>
         </tr>
     {% endfor %}
     </tbody>
