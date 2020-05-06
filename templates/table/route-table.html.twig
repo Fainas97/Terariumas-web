@@ -1,0 +1,18 @@
+<table class="table table-striped table-sm">
+    <thead>
+    <tr>
+        <th>Terrarium</th>
+        <th>Address</th>
+        <th>Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for route in routes %}
+        <tr>
+            <td>{{ route.terrarium }}</td>
+            <td>{{ route.address }}</td>
+            <td>{{ route.time }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
