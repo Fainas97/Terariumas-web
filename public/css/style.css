@@ -8,6 +8,11 @@ body {
     font-weight: bold;
 }
 
+.label-light {
+    margin-top: 15px;
+    font-weight: lighter;
+}
+
 .form-margin {
     margin: 15px;
 }

@@ -83,8 +83,8 @@ function getData(id, message) {
     let url = Routing.generate(id.replace(/-/g, '_'));
     table.load(url);
     $.notify({
-        title: '<b>Success!</b>',
-        message: message + ' refreshed'
+        title: '<b>Pavyko!</b>',
+        message: message + ' atnaujinti'
     },{
         delay: 5000
     });

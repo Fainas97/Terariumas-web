@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MessageController extends AbstractController
 {
     /**
-     * @Route("/messages", name="messages_page")
+     * @Route("/pranesimai", name="messages_page")
      * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param MessageService $messageService
      * @return Response
@@ -30,7 +30,7 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/messages/table", name="messages_table", options={"expose" = true})
+     * @Route("/pranesimai/lentele", name="messages_table", options={"expose" = true})
      * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param MessageService $messageService
      * @return Response

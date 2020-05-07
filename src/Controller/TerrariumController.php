@@ -27,7 +27,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 class TerrariumController extends AbstractController
 {
     /**
-     * @Route("/terrariums", name="terrariums_show")
+     * @Route("/terariumai", name="terrariums_show")
      * @IsGranted("ROLE_USER", message="Tik prisijungę vartotojai gali pasiekti ši puslapį")
      * @param TerrariumService $terrariumService
      * @param UserService $userService
@@ -55,7 +55,7 @@ class TerrariumController extends AbstractController
     }
 
     /**
-     * @Route("/terrariums/create", name="create_terrariums")
+     * @Route("/terariumai/sukurti", name="create_terrariums")
      * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param Request $request
      * @param TerrariumService $terrariumService
@@ -82,7 +82,7 @@ class TerrariumController extends AbstractController
     }
 
     /**
-     * @Route("/terrarium/edit/{id}", name="edit_terrarium")
+     * @Route("/terariumai/redaguoti/{id}", name="edit_terrarium")
      * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param Request $request
      * @param int $id
@@ -119,7 +119,7 @@ class TerrariumController extends AbstractController
     }
 
     /**
-     * @Route("/terrarium/delete/{id}", name="delete_terrarium")
+     * @Route("/terariumai/trinti/{id}", name="delete_terrarium")
      * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param int $id
      * @param TerrariumService $terrariumService
@@ -136,7 +136,7 @@ class TerrariumController extends AbstractController
     }
 
     /**
-     * @Route("/terrariums/routes", name="terrariums_routes")
+     * @Route("/terariumai/marsrutai", name="terrariums_routes")
      * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
      * @param TerrariumService $terrariumService
      * @param TerrariumDataService $terrariumDataService

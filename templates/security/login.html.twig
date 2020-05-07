@@ -13,13 +13,13 @@
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
 
-                        <label for="inputEmail" class="label">El. paštas</label>
+                        <label for="inputEmail" class="label-light">El. paštas</label>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                        <label for="inputPassword" class="label">Slaptažodis</label>
+                        <label for="inputPassword" class="label-light">Slaptažodis</label>
                         <input type="password" name="password" id="inputPassword" class="form-control" required>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <div class="checkbox mb-3">
-                            <label class="label">
+                            <label class="label-light">
                                 <input type="checkbox" name="_remember_me"> Prisiminti mane
                             </label>
                         </div>

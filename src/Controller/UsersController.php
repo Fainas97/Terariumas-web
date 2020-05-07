@@ -19,7 +19,7 @@ use App\Service\UserService;
 class UsersController extends AbstractController
 {
     /**
-     * @Route("/users", name="app_users")
+     * @Route("/vartotojai", name="app_users")
      * @param UserService $userService
      * @return Response
      */
@@ -33,7 +33,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/users/create", name="create_users")
+     * @Route("/vartotojai/sukurti", name="create_users")
      * @return Response
      */
     public function create(): Response
@@ -42,7 +42,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/user/edit/{id}", name="edit_user")
+     * @Route("/vartotojai/redaguoti/{id}", name="edit_user")
      * @param Request $request
      * @param int $id
      * @param UserService $userService
@@ -66,7 +66,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/user/delete/{id}", name="delete_user")
+     * @Route("/vartotojai/trinti/{id}", name="delete_user")
      * @param int $id
      * @param UserService $userService
      * @return Response

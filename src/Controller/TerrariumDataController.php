@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TerrariumDataController extends AbstractController
 {
     /**
-     * @Route("/terrariums/data", name="home_page")
+     * @Route("/terariumai/duomenys", name="home_page")
      * @IsGranted("ROLE_USER", message="Tik prisijungę vartotojai gali pasiekti ši puslapį")
      * @param TerrariumDataService $terrariumDataService
      * @return Response

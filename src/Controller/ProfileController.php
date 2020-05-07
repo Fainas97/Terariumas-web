@@ -42,7 +42,7 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/profile", name="app_profile")
+     * @Route("/profilis", name="app_profile")
      * @param Request $request
      * @param UserService $userService
      * @return Response
