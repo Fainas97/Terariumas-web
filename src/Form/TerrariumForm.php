@@ -24,97 +24,79 @@ class TerrariumForm extends AbstractType
                     'mapped' => false,
                     'constraints' => [
                         new NotBlank([
-                            'message' => 'Please enter terrarium name',
+                            'message' => 'Terariumui turi būti priskirtas vartotojas',
                         ]),
                     ]
                 ])
             ->add('Name', TextType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter terrarium name',
-                    ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Name should contain at least {{ limit }} characters',
+                        'minMessage' => 'Terariumo pavadinimas turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 70,
-                        'maxMessage' => 'Name should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'Terariumo pavadinimas turi turėti ne daugiau nei {{ limit }} simbolius',
                     ])
                 ]
             ])
             ->add('Temperature_range', TextType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter terrarium temperature range',
-                    ]),
                     new Length([
                         'min' => 3,
-                        'minMessage' => 'Temperature range should contain at least {{ limit }} characters',
+                        'minMessage' => 'Temperatūros riba su histerize turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 5,
-                        'maxMessage' => 'Temperature range should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'Temperatūros riba su histerize turi turėti ne daugiau nei {{ limit }} simbolius',
                     ]),
                     new Regex([
                         'pattern' => '/[0-9]{1,2}[:][0-9]{1,2}$/',
-                        'message' => 'Format examples - XX:YY or XX:Y or X:Y'
+                        'message' => 'Rekalingos formato pavyzdys - XX:YY or XX:Y or X:Y'
                     ])
                 ]
             ])
             ->add('Humidity_range', TextType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter terrarium humidity range',
-                    ]),
                     new Length([
                         'min' => 3,
-                        'minMessage' => 'Humidity range should contain at least {{ limit }} characters',
+                        'minMessage' => 'Drėgmės riba su histerize turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 5,
-                        'maxMessage' => 'Humidity range should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'Drėgmės riba su histerize turi turėti ne daugiau nei {{ limit }} simbolius',
                     ]),
                     new Regex([
                         'pattern' => '/[0-9]{1,2}[:][0-9]{1,2}$/',
-                        'message' => 'Format examples - XX:YY or XX:Y or X:Y'
+                        'message' => 'Rekalingos formato pavyzdys - XX:YY or XX:Y or X:Y'
                     ])
                 ]
             ])
             ->add('Lighting_schedule', TextType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter terrarium lighting schedule',
-                    ]),
                     new Length([
                         'min' => 17,
-                        'minMessage' => 'Lighting schedule should contain at least {{ limit }} characters',
+                        'minMessage' => 'Apšvietimo grafikas turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 17,
-                        'maxMessage' => 'Lighting schedule should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'Apšvietimo grafikas turi turėti ne daugiau nei {{ limit }} simbolius',
                     ]),
                     new Regex([
                         'pattern' => '/[0-9]{2}[:][0-9]{2}[:][0-9]{2}[-][0-9]{2}[:][0-9]{2}[:][0-9]{2}$/',
-                        'message' => 'Format XX:XX:XX-YY:YY:YY'
+                        'message' => 'Formatas XX:XX:XX-YY:YY:YY'
                     ])
                 ]
             ])
             ->add('Address', TextType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter terrarium address',
-                    ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Name should contain at least {{ limit }} characters',
+                        'minMessage' => 'Adresas turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 100,
-                        'maxMessage' => 'Name should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'Adresas turi turėti ne daugiau nei {{ limit }} simbolius',
                     ])
                 ]
             ])
             ->add('Url', TextType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter terrarium url',
-                    ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Url should contain at least {{ limit }} characters',
+                        'minMessage' => 'Valdiklio tinklalapio adresas turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 64,
-                        'maxMessage' => 'Url should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'Valdiklio tinklalapio adresas turi turėti ne daugiau nei {{ limit }} simbolius',
                     ])
                 ]
             ]);

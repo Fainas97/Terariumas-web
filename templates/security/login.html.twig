@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Prisijunkite!{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -8,23 +8,23 @@
             <div class="col-12 p-0">
                 <div class="jumbotron bg-dark text-white min-vh-100 text-center m-0 d-flex flex-column justify-content-center align-items-center">
                     <form class="col-5 form-margin" method="post">
-                        <h1>Terrarium Web - Login</h1>
+                        <h1>Terariumų tinklo priežiūros informacinė sistema</h1>
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
 
-                        <label for="inputEmail" class="label">Email</label>
+                        <label for="inputEmail" class="label-light">El. paštas</label>
                         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                        <label for="inputPassword" class="label">Password</label>
+                        <label for="inputPassword" class="label-light">Slaptažodis</label>
                         <input type="password" name="password" id="inputPassword" class="form-control" required>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <div class="checkbox mb-3">
-                            <label class="label">
-                                <input type="checkbox" name="_remember_me"> Remember me
+                            <label class="label-light">
+                                <input type="checkbox" name="_remember_me"> Prisiminti mane
                             </label>
                         </div>
                         <button class="btn btn-lg grey" type="submit">
-                            Sign in
+                            Prisijungti
                         </button>
                     </form>
                 </div>

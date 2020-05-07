@@ -16,8 +16,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TerrariumDataController extends AbstractController
 {
     /**
-     * @Route("/terrariums/data", name="home_page")
-     * @IsGranted("ROLE_USER", message="Only users access this page")
+     * @Route("/terariumai/duomenys", name="home_page")
+     * @IsGranted("ROLE_USER", message="Tik prisijungę vartotojai gali pasiekti ši puslapį")
      * @param TerrariumDataService $terrariumDataService
      * @return Response
      */
@@ -39,7 +39,7 @@ class TerrariumDataController extends AbstractController
 
     /**
      * @Route("/terrariums/table/data", name="terrariums_data_table", options={"expose" = true})
-     * @IsGranted("ROLE_USER", message="Only users access this page")
+     * @IsGranted("ROLE_USER", message="Tik prisijungę vartotojai gali pasiekti ši puslapį")
      * @param TerrariumDataService $terrariumDataService
      * @return Response
      */

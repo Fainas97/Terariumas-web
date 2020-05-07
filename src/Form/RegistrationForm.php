@@ -20,44 +20,35 @@ class RegistrationForm extends AbstractType
         $builder
             ->add('Name', TextType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter your name',
-                    ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your name should contain at least {{ limit }} characters',
+                        'minMessage' => 'Vartotojo vardas turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 70,
-                        'maxMessage' => 'Your name should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'Vartotojo vardas turi turėti ne daugiau nei {{ limit }} simbolius',
                     ])
                 ],
             ])
             ->add('Email', EmailType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter your email',
-                    ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your email should contain at least {{ limit }} characters',
+                        'minMessage' => 'El. paštas turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 100,
-                        'maxMessage' => 'Your email should not contain more than {{ limit }} characters',
+                        'maxMessage' => 'El. paštas turi turėti ne daugiau nei {{ limit }} simbolius',
                     ])
                 ],
             ])
             ->add('Admin', ChoiceType::class, [
                 'choices' => [
-                    'Client' => 0,
-                    'Admin' => 1,
+                    'Klientas' => 0,
+                    'Prižiūrinti įmonė' => 1,
                 ]
             ])
             ->add('Password', PasswordType::class, [
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should contain at least {{ limit }} characters',
+                        'minMessage' => 'Slaptažodis turi turėti daugiau nei {{ limit }} simbolius',
                         'max' => 255,
                     ]),
                 ],

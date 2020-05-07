@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Users{% endblock %}
+{% block title %}Vartotojai{% endblock %}
 
 {% block body %}
     <div class="row">
         <div class="col-md-6 col-xs-6">
-            <h2>Users management page</h2>
+            <h2>Vartotojų valdymas</h2>
         </div>
         <div class="col-md-6 col-sm-6">
-            <a class="btn grey float-right" href="{{ path('app_register') }}">Create new user</a>
+            <a class="btn grey float-right" href="{{ path('app_register') }}">Sukurti naują paskyrą</a>
         </div>
     </div>
     {% include 'modal/confirm.html.twig' %}
