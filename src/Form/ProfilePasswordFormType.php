@@ -17,18 +17,18 @@ class ProfilePasswordFormType extends AbstractType
         $builder
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Slaptažodžių laukai turi sutapti',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat password'],
-                'constraints' => new UserPassword(array('message' => 'Password is incorrect!')),
+                'constraints' => new UserPassword(array('message' => 'Slaptažodis neteisingas')),
                 'mapped' => false
             ])
             ->add('newPassword', RepeatedType::class, [
                 'mapped' => false,
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
+                'invalid_message' => 'Slaptažodžių laukai turi sutapti',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'New password'],

@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\UserService;
 
 /**
- * @IsGranted("ROLE_ADMIN", message="Only administrator can access this page")
+ * @IsGranted("ROLE_ADMIN", message="Tik prižiūrinčios įmonės teises turinti paskyra gali pasiekti ši puslapį")
  */
 class UsersController extends AbstractController
 {
     /**
-     * @Route("/users", name="app_users")
+     * @Route("/vartotojai", name="app_users")
      * @param UserService $userService
      * @return Response
      */
@@ -33,7 +33,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/users/create", name="create_users")
+     * @Route("/vartotojai/sukurti", name="create_users")
      * @return Response
      */
     public function create(): Response
@@ -42,7 +42,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/user/edit/{id}", name="edit_user")
+     * @Route("/vartotojai/redaguoti/{id}", name="edit_user")
      * @param Request $request
      * @param int $id
      * @param UserService $userService
@@ -66,7 +66,7 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/user/delete/{id}", name="delete_user")
+     * @Route("/vartotojai/trinti/{id}", name="delete_user")
      * @param int $id
      * @param UserService $userService
      * @return Response
@@ -78,7 +78,7 @@ class UsersController extends AbstractController
         $entityManager->remove($user);
         $entityManager->flush();
 
-        return new JsonResponse(array('success' => 'User "' . $user->getName() . '" has been removed!'));
+        return new JsonResponse(array('success' => 'Vartotojas "' . $user->getName() . '" buvo sėkmingai pašalintas!'));
     }
 
     /**
@@ -106,6 +106,6 @@ class UsersController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        $this->addFlash('success', 'User profile has been successfully updated!');
+        $this->addFlash('success', 'Vartotojo paskyra buvo sėkmingai atnaujinta!');
     }
 }

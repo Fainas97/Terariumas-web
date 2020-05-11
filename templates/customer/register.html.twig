@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Pridėti naują paskyrą{% endblock %}
 
 {% block body %}
-    <h1>Register user</h1>
+    <h1>Pridėti naują paskyrą</h1>
+    <hr>
     <div class="alert-danger">
         {{ form_errors(registrationForm) }}
     </div>
     {{ form_start(registrationForm) }}
     <div class="row">
         <div class="col-lg-5 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(registrationForm.Name) }}
-            </div>
+            <div class="label">Vartotojo vardas</div>
             {{ form_widget(registrationForm.Name, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(registrationForm.Name) }}
@@ -21,9 +20,7 @@
     </div>
     <div class="row">
         <div class="col-lg-5 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(registrationForm.Email) }}
-            </div>
+            <div class="label">El. paštas</div>
             {{ form_widget(registrationForm.Email, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(registrationForm.Email) }}
@@ -32,9 +29,7 @@
     </div>
     <div class="row">
         <div class="col-lg-5 col-md-12 col-sm-12">
-            <div class="label">
-                {{ form_label(registrationForm.Password) }}
-            </div>
+            <div class="label">Slaptažodis</div>
             {{ form_widget(registrationForm.Password, { attr: { 'class': 'form-control' }}) }}
             <div class="alert-danger">
                 {{ form_errors(registrationForm.Password) }}
@@ -43,16 +38,16 @@
     </div>
     <div class="row">
         <div class="col-lg-5 col-md-12 col-sm-12">
-            <div class="label">
-                Role
-            </div>
+            <div class="label">Rolė</div>
             {{ form_widget(registrationForm.Admin, { attr: { 'class': 'form-control' }}) }}
         </div>
     </div>
+    <hr>
     <div class="row">
-    <div class="col-md-6 col-xs-6">
-        <button class="btn grey">Register</button>
-    </div>
+        <div class="col-md-6 col-xs-6">
+            <br>
+            <button class="btn btn-lg grey">Registruoti</button>
+        </div>
     </div>
     {{ form_end(registrationForm) }}
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Messages{% endblock %}
+{% block title %}Pranešimai{% endblock %}
 
 {% block body %}
     <div class="row">
         <div class="col-md-6 col-xs-6">
-            <h2>Terrariums messages</h2>
+            <h2>Terariumų pranešimai</h2>
         </div>
     </div>
     {% include 'modal/confirm.html.twig' %}
@@ -21,7 +21,7 @@
     </div>
     <script>
         setInterval(function () {
-            this.getData('messages-table', 'Messages');
+            this.getData('messages-table', 'Pranešimai');
             }, 50000)
     </script>
 {% endblock %}

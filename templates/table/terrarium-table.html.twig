@@ -2,15 +2,15 @@
     <thead>
     <tr>
         <th>#</th>
-        <th>User</th>
-        <th>Name</th>
-        <th>Temperature</th>
-        <th>Humidity</th>
-        <th>Lighting</th>
-        <th>Address</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th class="text-center">Actions</th>
+        <th>Vartotojas</th>
+        <th>Pavadinimas</th>
+        <th>Temperatūra</th>
+        <th>Drėgmė</th>
+        <th>Apšvietimas</th>
+        <th>Adresas</th>
+        <th>Sukurtas</th>
+        <th>Atnaujintas</th>
+        <th class="text-center">Veiksmai</th>
     </tr>
     </thead>
     <tbody>
@@ -18,7 +18,11 @@
         <tr>
             <td>{{ terrarium.id }}</td>
             <td>{{ userNames[terrarium.userId] }}</td>
-            <td>{{ terrarium.name }}</td>
+            <td>{{ terrarium.name }}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <i class="fas fa-tags" title="{{ terrarium.auth }}"></i>
+                {% endif %}
+            </td>
             <td>{{ terrarium.temperatureRange }}°C</td>
             <td>{{ terrarium.humidityRange }}%</td>
             <td>{{ terrarium.lightingSchedule }}</td>
