@@ -18,7 +18,11 @@
         <tr>
             <td>{{ terrarium.id }}</td>
             <td>{{ userNames[terrarium.userId] }}</td>
-            <td>{{ terrarium.name }}</td>
+            <td>{{ terrarium.name }}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <i class="fas fa-tags" title="{{ terrarium.auth }}"></i>
+                {% endif %}
+            </td>
             <td>{{ terrarium.temperatureRange }}°C</td>
             <td>{{ terrarium.humidityRange }}%</td>
             <td>{{ terrarium.lightingSchedule }}</td>
