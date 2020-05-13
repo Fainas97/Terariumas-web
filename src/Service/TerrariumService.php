@@ -158,13 +158,13 @@ class TerrariumService
     {
         if ($routes[$id]['rating'] < 0.3) {
             $routes[$id]['condition'] = '#92B93D';
-            $routes[$id]['status'] = 'Fair';
+            $routes[$id]['status'] = 'Nepatenkinamas';
         } elseif ($routes[$id]['rating'] < 0.65) {
             $routes[$id]['condition'] = '#B29307';
-            $routes[$id]['status'] = 'Serious';
+            $routes[$id]['status'] = 'Sunkus';
         } else {
             $routes[$id]['condition'] = '#D8210F';
-            $routes[$id]['status'] = 'Critical';
+            $routes[$id]['status'] = 'Kritinis';
         }
     }
 

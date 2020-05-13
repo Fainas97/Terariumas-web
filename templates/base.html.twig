@@ -9,7 +9,7 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-{% if app.request.pathinfo != '/login' %}
+{% if app.request.pathinfo != '/prisijungti' %}
 {% include 'menu/navbar.html.twig' %}
 <div class="container-fluid">
     <div class="row">
@@ -17,7 +17,7 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             {% endif %}
             {% block body %}{% endblock %}
-            {% if app.request.pathinfo != '/login' %}
+            {% if app.request.pathinfo != '/prisijungti' %}
         </main>
     </div>
 </div>

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Terrarium;
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,6 +22,11 @@ class TerrariumForm extends AbstractType
             ->add('Users', EntityType::class,
                 [
                     'class' => User::class,
+                    'query_builder' => function(UserRepository $repository) {
+                        return $repository->createQueryBuilder('u')
+                            ->where('u.admin != 1',)
+                            ->orderBy('u.name', 'ASC');
+                    },
                     'mapped' => false,
                     'constraints' => [
                         new NotBlank([

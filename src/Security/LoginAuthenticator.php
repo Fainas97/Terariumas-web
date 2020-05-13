@@ -68,7 +68,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 
         if (!$user) {
-            throw new CustomUserMessageAuthenticationException('Email or password is incorrect!');
+            throw new CustomUserMessageAuthenticationException('El. paštas arba/ir slaptažodis buvo neteisingas!');
         }
 
         return $user;
