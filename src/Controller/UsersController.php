@@ -25,11 +25,8 @@ class UsersController extends AbstractController
      */
     public function customers(UserService $userService): Response
     {
-        $user = $this->getUser();
-        if ($user->getAdmin()) {
-            $users = $userService->getUsers($user->getId());
-            return $this->render('customer/customers.html.twig', ['users' => $users ]);
-        }
+        $users = $userService->getUsers($this->getUser()->getId());
+        return $this->render('customer/customers.html.twig', ['users' => $users ]);
     }
 
     /**

@@ -54,7 +54,7 @@ class TerrariumForm extends AbstractType
                     ]),
                     new Regex([
                         'pattern' => '/[0-9]{1,2}[:][0-9]{1,2}$/',
-                        'message' => 'Rekalingos formato pavyzdys - XX:YY or XX:Y or X:Y'
+                        'message' => 'Reikalingo formato pavyzdys - XX:YY ar XX:Y ar X:Y'
                     ])
                 ]
             ])
@@ -68,7 +68,7 @@ class TerrariumForm extends AbstractType
                     ]),
                     new Regex([
                         'pattern' => '/[0-9]{1,2}[:][0-9]{1,2}$/',
-                        'message' => 'Rekalingos formato pavyzdys - XX:YY or XX:Y or X:Y'
+                        'message' => 'Reikalingo formato pavyzdys - XX:YY ar XX:Y ar X:Y'
                     ])
                 ]
             ])
