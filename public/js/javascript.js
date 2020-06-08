@@ -29,9 +29,10 @@ $(document).ready(function() {
         let $modalDiv = $(e.delegateTarget);
         $modalDiv.addClass('loading');
         let data = $(this).data('data');
+        console.log(data);
         $modalDiv.modal('hide').removeClass('loading');
         $.ajax({
-            url: '/' + data.url + '/delete/' + data.id,
+            url: '/' + data.url + '/trinti/' + data.id,
             type: 'post',
             success: function (result) {
                 reloadTableData(data.name);

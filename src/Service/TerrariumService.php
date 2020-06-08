@@ -156,10 +156,10 @@ class TerrariumService
      */
     private function getConditionAndStatus(array &$routes, int $id)
     {
-        if ($routes[$id]['rating'] < 0.3) {
+        if ($routes[$id]['rating'] <= 0.25) {
             $routes[$id]['condition'] = '#92B93D';
             $routes[$id]['status'] = 'Nepatenkinamas';
-        } elseif ($routes[$id]['rating'] < 0.65) {
+        } elseif ($routes[$id]['rating'] <= 0.6) {
             $routes[$id]['condition'] = '#B29307';
             $routes[$id]['status'] = 'Sunkus';
         } else {
